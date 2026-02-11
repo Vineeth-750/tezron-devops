@@ -1,0 +1,12 @@
+<nav class="navbar navbar-dark bg-dark px-3">
+  <a class="navbar-brand text-white">MovieFlix</a>
+
+  <form action="/search/" method="get" class="d-flex w-50">
+    <input name="q" class="form-control" placeholder="Search movies">
+  </form>
+
+  <div class="text-white">
+    {{ request.user.email }}
+    <img src="https://i.pravatar.cc/40" class="rounded-circle">
+  </div>
+</nav>

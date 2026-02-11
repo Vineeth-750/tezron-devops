@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+/* ===== Page ===== */
+body {
+    background-color: #141414;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== Genre title ===== */
+h4 {
+    margin: 30px 0 10px 25px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* ===== Horizontal movie row ===== */
+.scroll-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 14px;
+    padding: 10px 25px 30px 25px;
+    scroll-behavior: smooth;
+}
+
+.scroll-row::-webkit-scrollbar {
+    display: none;
+}
+
+/* ===== Movie card ===== */
+.card {
+    min-width: 170px;
+    height: 255px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===== Hover zoom ===== */
+.card:hover {
+    transform: scale(1.18);
+    z-index: 20;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.8);
+}
+
+/* ===== Overlay ===== */
+.card-body {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card:hover .card-body {
+    opacity: 1;
+}
+
+/* ===== Watch button ===== */
+.watch-btn {
+    background: #e50914;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.watch-btn:hover {
+    background: #f6121d;
+}
+
+/* ===== Optional: Netflix header ===== */
+.navbar {
+    background: black;
+    padding: 12px 25px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #e50914;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-btn {
+    background: #e50914;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background: #f6121d;
+}
+</style>
+
+<!-- ===== Top Navbar ===== -->
+<div class="navbar">
+    <div>🎬 FilmList</div>
+    <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+</div>
+
+<!-- ===== Movies by Genre ===== -->
+{% for genre, movies in genres.items %}
+<h4>{{ genre }}</h4>
+
+<div class="scroll-row">
+{% for m in movies %}
+    <div class="card">
+        <img src="https://image.tmdb.org/t/p/w500{{ m.poster_path }}">
+
+        <div class="card-body">
+            <a href="/watch/{{m.id}}/?title={{m.title}}&poster=https://image.tmdb.org/t/p/w500{{m.poster_path}}"
+               class="watch-btn">
+               ▶ Watch
+            </a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endfor %}
+
+{% endblock %}
+
