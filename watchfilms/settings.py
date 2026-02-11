@@ -81,7 +81,7 @@ CACHES = {
 }
 
 #API_key for TMDB
-TMDB_API_KEY = 'f6656845e7eef0da233b8ceb69712e4f'
+TMDB_API_KEY = 'f6656845e7eef0da233b8ceb4f'
 
 
 
