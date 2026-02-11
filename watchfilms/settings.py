@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-uc5n(%5gxx08c_@tq8^d-wf+%)!-b6iy+j6mpu^j)tjt$l5m=_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tezron-devops-vineethkp-dev.apps.rm2.thpm.p1.openshiftapps.com','localhost']
 
 
 # Application definition
